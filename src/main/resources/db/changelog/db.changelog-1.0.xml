@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<property name="VARCHAR(36)_type" value="uniqueidentifier"
+		dbms="mysql" />
+	<property name="VARCHAR(36)_function" value="NEWID()"
+		dbms="mysql" />
+
+	<changeSet id="01" author="Prathamesh Sonawane">
+		<createTable tableName="master_user">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_MASTER_USER" nullable="false" />
+			</column>
+			<column name="USER_ID" type="UUID" />
+			<column name="USER_NAME" type="VARCHAR(100)" />
+			<column name="USER_PASSWORD" type="VARCHAR(200)" />
+			<column name="MODIFIED_BY" type="UUID" />
+			<column name="MODIFIED_ON" type="DATETIME" />
+			<column name="ACTIVE" type="TINYINT(1)" />
+			<column name="ROLEID" type="UUID" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="02" author="Prathamesh Sonawane">
+		<createTable tableName="MASTER_ROLE">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_MASTER_ROLE" nullable="false" />
+			</column>
+			<column name="ROLEID" type="UUID" />
+			<column name="ROLENAME" type="VARCHAR(100)" />
+			<column name="ACTIVE" type="TINYINT(1)" />
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>
